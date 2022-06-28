@@ -1,5 +1,5 @@
 {
-  "name": "node-red-contrib-stackhero-mysql-config",
+  "name": "node-red-contrib-mysql-config",
   "version": "1.0.0",
   "description": "Fork of node-red-contrib-stackhero-mysql that allows config to be set via environment variables.",
   "dependencies": {
