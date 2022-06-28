@@ -1,0 +1,27 @@
+{
+  "name": "node-red-contrib-stackhero-mysql-config",
+  "version": "1.0.0",
+  "description": "Fork of node-red-contrib-stackhero-mysql that allows config to be set via environment variables.",
+  "dependencies": {
+    "mysql2": "2.2.5"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/chillerno1/node-red-contrib-mysql-config"
+  },
+  "keywords": [
+    "node-red",
+    "mysql",
+    "mariadb"
+  ],
+  "node-red": {
+    "nodes": {
+      "mysql-connector": "src/main.js"
+    }
+  },
+  "author": {
+    "name": "Chiller",
+    "url": "https://github.com/chillerno1/node-red-contrib-mysql-config"
+  },
+  "license" : "AGPL-3.0"
+}

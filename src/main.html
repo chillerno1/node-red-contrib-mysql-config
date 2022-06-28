@@ -1,0 +1,160 @@
+<script type="text/html" data-template-name="MySQL-Server-Connector">
+  <div class="form-row">
+    <label for="node-config-input-host"><i class="fa fa-globe"></i> Host</label>
+    <input type="text" id="node-config-input-host" placeholder="example.com">
+  </div>
+  <div class="form-row">
+    <label for="node-config-input-port"><i class="fa fa-random"></i> Port</label>
+    <input type="text" id="node-config-input-port">
+  </div>
+  <div class="form-row">
+    <label for="node-config-input-tls"><i class="fa fa-shield"></i> TLS</label>
+    <input type="checkbox" id="node-config-input-tls" style="display:inline-block; width:auto; vertical-align:top;">
+    <label for="node-config-input-tls" style="width:auto !important;"> Encrypt connection to database</label>
+  </div>
+  <div class="form-row">
+    <label for="node-config-input-user"><i class="fa fa-user"></i> User</label>
+    <input type="text" id="node-config-input-user">
+  </div>
+  <div class="form-row">
+    <label for="node-config-input-password"><i class="fa fa-lock"></i> Password</label>
+    <input type="password" id="node-config-input-password">
+  </div>
+  <div class="form-row">
+    <label for="node-config-input-database"><i class="fa fa-database"></i> Database</label>
+    <input type="text" id="node-config-input-database">
+  </div>
+  <div class="form-row">
+    <label for="node-config-input-name"><i class="fa fa-tag"></i> Name</label>
+    <input type="text" id="node-config-input-name" placeholder="Name">
+  </div>
+</script>
+
+<script type="text/javascript">
+  RED.nodes.registerType('MySQL-Server-Connector', {
+    category: 'config',
+    defaults: {
+      name: {
+        value: ""
+      },
+      host: {
+        value: "example.com",
+        required: true
+      },
+      port: {
+        value: "3306",
+        required: true
+      },
+      user: {
+        value: "",
+        required: true
+      },
+      password: {
+        value: "",
+        required: true
+      },
+      tls: {
+        value: true,
+        required: true
+      },
+      database: {
+        value: "",
+        required: true
+      },
+    },
+    // Note: label (and probably labelStyle) have to be a classical function (not an arrow function)
+    label: function () {
+      return this.name || this.database
+    }
+  });
+</script>
+
+
+<!-- See https://nodered.org/docs/creating-nodes/help-style-guide -->
+<script type="text/html" data-help-name="MySQL-Server-Connector">
+  <p>
+    Add the credentials for accessing your database here.
+  </p>
+</script>
+
+
+
+<script type="text/html" data-template-name="MySQL-Connector">
+  <div class="form-row">
+    <label for="node-input-server"><i class="fa fa-database"></i> Database</label>
+    <input type="text" id="node-input-server">
+  </div>
+  <div class="form-row">
+    <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+    <input type="text" id="node-input-name" placeholder="Name">
+  </div>
+</script>
+
+<!-- See https://nodered.org/docs/creating-nodes/help-style-guide -->
+<script type="text/html" data-help-name="MySQL-Connector">
+  <p>Connects to a MySQL database.</p>
+
+
+  <h3>Inputs</h3>
+  <dl class="message-properties">
+    <dt>
+      topic <span class="property-type">string</span>
+    </dt>
+    <dd> the SQL query.</dd>
+
+    <dt class="optional">
+      payload <span class="property-type">object</span>
+    </dt>
+    <dd> the arguments passed to the query.</dd>
+  </dl>
+
+
+  <h3>Outputs</h3>
+  <dl class="message-properties">
+    <dt>payload <span class="property-type">array</span></dt>
+    <dd>the results of the SQL query.</dd>
+  </dl>
+
+
+  <h3>Example</h3>
+
+  <p>
+    The query:
+    <pre>msg.topic = 'SELECT * FROM `users` WHERE `name` = :name AND `age` > :age;'</pre>
+
+    The arguments:
+    <pre>msg.payload = { name: 'Adrien', age: 30 };</pre>
+  </p>
+
+  <h3>References</h3>
+  <ul>
+    <li><a href="https://github.com/stackhero-io/node-red-contrib-stackhero-mysql">Repository</a> - the node repository</li>
+  </ul>
+</script>
+
+<script type="text/javascript">
+  RED.nodes.registerType('MySQL-Connector', {
+    category: 'storage-input',
+    color: '#C0DEED', // See https://nodered.org/docs/creating-nodes/appearance#background-colour
+    defaults: {
+      server: {
+        type: 'MySQL-Server-Connector',
+        required: true
+      },
+      name: {
+        value: ''
+      }
+    },
+    inputs: 1, // Number of input
+    outputs: 1, // Number of outputs
+    icon: 'db.png', // See https://nodered.org/docs/creating-nodes/appearance#icon
+    // Note: label (and probably labelStyle) have to be a classical function (not an arrow function)
+    label: function () {
+      const levelNode = RED.nodes.node(this.server);
+      return this.name || (levelNode ? levelNode.label() : 'MySQL Connector');
+    },
+    labelStyle: function () {
+      return this.name ? 'node_label_italic' : ''
+    }
+  });
+</script>
