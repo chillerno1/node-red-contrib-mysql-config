@@ -2,7 +2,11 @@
 
 *Note:* All credit for this work goes to the original creator(s): [https://github.com/stackhero-io/node-red-contrib-stackhero-mysql](https://github.com/stackhero-io/node-red-contrib-stackhero-mysql)
 
-This is a fork for the purpose of configuring a connection using environment variables. One use case for this type of configuration is where NodeRED changes are being deployed in a CI/CD environment and you want to retrieve the login credentials from environment variables, rather than manually configure through the NodeRED UI. 
+This is a fork for the purpose of configuring a connection using environment variables. 
+
+## Use Case
+
+One use case for this fork is when NodeRED changes are being deployed in a CI/CD environment and you need to set login credentials from environment variables on initialisation, rather than manually configuring them in the NodeRED UI. 
 
 ## node-red-contrib-mysql-config
 
