@@ -1,12 +1,16 @@
-# Foreword
-
-All credit for this work goes to the original creator(s):  [https://github.com/stackhero-io/node-red-contrib-stackhero-mysql](https://github.com/stackhero-io/node-red-contrib-stackhero-mysql)
-
-This is a fork for the purpose of configuring the connection details as environment variables.
-
-## node-red-contrib-mysql-config
+# node-red-contrib-mysql-config
 
 [Node-RED](https://nodered.org) node to read and write to a MySQL or a MariaDB database.
+
+## Foreword
+
+**Note:** All credit for this work goes to the original creator(s): [https://github.com/stackhero-io/node-red-contrib-stackhero-mysql](https://github.com/stackhero-io/node-red-contrib-stackhero-mysql)
+
+This is a fork for the purpose of configuring a connection using environment variables. 
+
+## Use Case
+
+The primary use case for using this version is in instances where NodeRED changes are being deployed using CI/CD pipelines across multiple environments and credentials need to be configured using environment variables as opposed to manually setting them in the NodeRED UI. 
 
 ## Configuration
 
